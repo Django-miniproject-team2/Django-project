@@ -3,7 +3,7 @@ name: Checks
 on:
   push:
     branches:
-      - '**'
+      - '**' # 모든 브랜치
   pull_request:
     branches:
       - '**'
