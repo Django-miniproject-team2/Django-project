@@ -10,6 +10,7 @@ dependencies = [
     "django-restframework>=0.0.1",
     "drf-yasg>=1.21.10",
     "isort>=6.0.1",
+    "postgres>=4.0",
 ]
 
 [dependency-groups]
