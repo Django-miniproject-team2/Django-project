@@ -44,7 +44,7 @@ jobs:
 
     - name: Install Packages & Libraries
       run: |
-        uv sync --dev-packages
+        uv sync --dev
 
     - name: Run isort (Import sorting)
       run: |
