@@ -2,9 +2,11 @@ name: Checks
 
 on:
 	push:
-	  branches: [main]
+      branches:
+        - '**'
 	pull_request:
-      branches: [main]
+      branches:
+        - '**'
 
 jobs:
   test:
@@ -37,7 +39,8 @@ jobs:
     - name: Install uv
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-		echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
     - name: Install Packages & Libraries
       run: |
