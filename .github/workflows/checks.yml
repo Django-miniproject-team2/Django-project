@@ -1,12 +1,12 @@
 name: Checks
 
 on:
-	push:
-      branches:
-        - '**'
-	pull_request:
-      branches:
-        - '**'
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
   test:
@@ -44,7 +44,7 @@ jobs:
 
     - name: Install Packages & Libraries
       run: |
-        uv pip install .
+        uv sync --dev-packages
 
     - name: Run isort (Import sorting)
       run: |
