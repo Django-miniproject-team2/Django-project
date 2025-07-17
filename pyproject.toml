@@ -1,0 +1,21 @@
+[project]
+name = "django-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "black>=25.1.0",
+    "django>=5.2.4",
+    "django-restframework>=0.0.1",
+    "drf-yasg>=1.21.10",
+    "isort>=6.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12.3",
+]
+prod = [
+    "ruff>=0.12.3",
+]
