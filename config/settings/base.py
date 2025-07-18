@@ -21,15 +21,22 @@ SECRET_KEY = "django-insecure-o6)#3y40rx_9yh(l@rt&%4260!gh))80oft6^@7-3o#prh6-v0
 
 
 # Application definition
-
-INSTALLED_APPS = [
+DJANGO_SYSTEM_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "core"
 ]
+
+CUSTOM_USER_APPS = [
+    "apps.users.apps.UsersConfig",
+]
+
+
+INSTALLED_APPS = DJANGO_SYSTEM_APPS + CUSTOM_USER_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -101,3 +108,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "users.User"
