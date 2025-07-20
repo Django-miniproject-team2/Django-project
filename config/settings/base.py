@@ -28,11 +28,12 @@ DJANGO_SYSTEM_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "core"
 ]
 
 CUSTOM_USER_APPS = [
     "apps.users.apps.UsersConfig",
+    "apps.transactions.apps.TransactionsConfig",
+    "apps.accounts.apps.AccountsConfig",
 ]
 
 
