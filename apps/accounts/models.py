@@ -1,7 +1,7 @@
 from django.db import models
-from apps.users.models import User
-from apps.common.models import BaseModel
 
+from apps.common.models import BaseModel
+from apps.users.models import User
 
 BANK_CODES = [
     ("000", "알수없음"),
@@ -111,27 +111,36 @@ ACCOUNT_TYPE_CHOICES = [
 
 class Account(BaseModel):
     # 유저 정보
-    user = models.ForeignKey(User,
-        on_delete=models.CASCADE, # 종속 삭제 옵션. 이 계좌가 참조하는 User가 삭제될 경우, 이 Account 데이터도 함께 자동으로 삭제됨.
-        related_name='accounts', # 역참조 시 사용할 이름. user 객체에서 이 사용자가 소유한 모든 계좌에 접근하고 싶을 때, user.accounts.all()과 같은 직관적인 코드를 사용할 수 있게 해줌.
-        verbose_name='사용자'
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,  # 종속 삭제 옵션. 이 계좌가 참조하는 User가 삭제될 경우, 이 Account 데이터도 함께 자동으로 삭제됨.
+        related_name="accounts",  # 역참조 시 사용할 이름. user 객체에서 이 사용자가 소유한 모든 계좌에 접근하고 싶을 때, user.accounts.all()과 같은 직관적인 코드를 사용할 수 있게 해줌.
+        verbose_name="사용자",
     )
     # 계좌 번호
-    account_number = models.CharField(max_length=50, unique=True, verbose_name='계좌번호')
+    account_number = models.CharField(
+        max_length=50, unique=True, verbose_name="계좌번호"
+    )
     # 은행 코드
-    bank_code = models.CharField(max_length=10, choices=BANK_CODES, verbose_name='은행 코드')
+    bank_code = models.CharField(
+        max_length=10, choices=BANK_CODES, verbose_name="은행 코드"
+    )
     # 계좌 종류
-    account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE_CHOICES, verbose_name='계좌 종류')
+    account_type = models.CharField(
+        max_length=20, choices=ACCOUNT_TYPE_CHOICES, verbose_name="계좌 종류"
+    )
     # 잔액 (소수점 포함 가능성 있기에 DecimalField 사용)
-    balance = models.DecimalField(max_digits=15, decimal_places=2, default=0.00, verbose_name='잔액')
+    balance = models.DecimalField(
+        max_digits=15, decimal_places=2, default=0.00, verbose_name="잔액"
+    )
 
     class Meta:
-        verbose_name = '계좌'
-        verbose_name_plural = '계좌 목록'
-        unique_together = ('user', 'account_number')
+        verbose_name = "계좌"
+        verbose_name_plural = "계좌 목록"
+        unique_together = ("user", "account_number")
 
     def __str__(self):
         # 이 Account 객체를 사람이 알아보기 쉬운 문자열로 표현
         # Django 관리자 페이지나 디버깅 시, Account object(2)와 같이 알아보기 힘든 표현 대신
         # '홍길동의 국민은행 계좌 (123-456)'와 같이 훨씬 명확한 형태로 객체를 표시한다.
-        return f'{self.user.nickname}의 {self.get_bank_code_display()} 계좌 ({self.account_number})'
+        return f"{self.user.nickname}의 {self.get_bank_code_display()} 계좌 ({self.account_number})"

@@ -1,6 +1,6 @@
-from apps.accounts.models import Account
 from django.db import models
 
+from apps.accounts.models import Account
 
 # 거래 종류
 TRANSACTION_TYPE_CHOICES = [
@@ -16,12 +16,13 @@ DEPOSIT_WITHDRAWAL_CHOICES = [
     ("WITHDRAW", "출금"),
 ]
 
+
 class Transaction(models.Model):
     account = models.ForeignKey(
         Account,
         on_delete=models.CASCADE,
-        related_name='transactions',
-        verbose_name="계좌 정보"
+        related_name="transactions",
+        verbose_name="계좌 정보",
     )
     amount = models.DecimalField(
         max_digits=15, decimal_places=2, verbose_name="거래 금액"
@@ -29,20 +30,14 @@ class Transaction(models.Model):
     balance_after = models.DecimalField(
         max_digits=15, decimal_places=2, verbose_name="거래 후 잔액"
     )
-    description = models.CharField(
-        max_length=255, blank=True, help_text="거래 내역"
-    )
+    description = models.CharField(max_length=255, blank=True, help_text="거래 내역")
 
     transaction_type = models.CharField(
-        max_length=20,
-        choices=TRANSACTION_TYPE_CHOICES,
-        help_text="거래 타입"
+        max_length=20, choices=TRANSACTION_TYPE_CHOICES, help_text="거래 타입"
     )
 
     io_type = models.CharField(
-        max_length=10,
-        choices=DEPOSIT_WITHDRAWAL_CHOICES,
-        help_text="입출금 타입"
+        max_length=10, choices=DEPOSIT_WITHDRAWAL_CHOICES, help_text="입출금 타입"
     )
 
     transaction_date = models.DateTimeField(
@@ -56,6 +51,7 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"[{self.account.account_number}] {self.get_io_type_display()} {self.amount} - {self.description}"
+
     class Meta:
         verbose_name = "거래 내역"
         verbose_name_plural = "거래 내역들"
