@@ -1,12 +1,5 @@
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-)  # 비밀번호 해싱 및 인증 로직 기능
-from django.contrib.auth.models import (
-    BaseUserManager,
-)  # 사용자 정의 공통 모델, 타임 스탬프 필드를 포함하도록 커스텀
-from django.contrib.auth.models import (
-    PermissionsMixin,
-)  # is_superuser 와 같은 필드 및 권한 관련 기능
+from django.contrib.auth.models import (  # 비밀번호 해싱 및 인증 로직 기능; 사용자 정의 공통 모델, 타임 스탬프 필드를 포함하도록 커스텀; is_superuser 와 같은 필드 및 권한 관련 기능
+    AbstractBaseUser, BaseUserManager, PermissionsMixin)
 from django.db import models
 from django.utils import timezone
 
