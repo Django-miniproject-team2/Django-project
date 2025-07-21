@@ -21,7 +21,6 @@ class CustomUserManager(BaseUserManager):
 
     # 관리자 생성 시
     def create_superuser(self, email, password=None, **extra_fields):
-        # 관리자 기본 값 지정
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
@@ -50,6 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=50, verbose_name="성함")
     phone_number = models.CharField(max_length=15, verbose_name="전화번호")
     last_login = models.DateTimeField(default=timezone.now)
+    is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
