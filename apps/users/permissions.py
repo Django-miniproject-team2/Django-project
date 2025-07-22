@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 # 객체 소유자에게만 권한 부여
 class IsOwner(permissions.BasePermission):
 

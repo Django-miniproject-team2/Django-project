@@ -7,9 +7,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView, Response
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
+
 from .models import User
 from .permissions import IsOwner
 from .serializers import LoginSerializer, UserRegisterSerializer, UserSerializer
+
 
 # 회원가입 API
 class UserRegisterView(APIView):
