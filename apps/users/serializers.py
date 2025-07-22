@@ -8,8 +8,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True,
         required=True,
-        style={"input_type": "password"}, # 비밀번호 입력 필드 표시
-        min_length=10, # 최소 10자
+        style={"input_type": "password"},  # 비밀번호 입력 필드 표시
+        min_length=10,  # 최소 10자
     )
     password2 = serializers.CharField(
         write_only=True,

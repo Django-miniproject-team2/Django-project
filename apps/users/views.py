@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
@@ -33,30 +32,32 @@ class UserRegisterView(APIView):
                             "properties": {
                                 "message": {
                                     "type": "string",
-                                    "example":"회원가입이 성공적으로 완료되었습니다."
+                                    "example": "회원가입이 성공적으로 완료되었습니다.",
                                 }
                             },
                         },
                     },
                 },
             },
-            400: UserRegisterSerializer, # 유효성 검사 실패 시 에러 반환
+            400: UserRegisterSerializer,  # 유효성 검사 실패 시 에러 반환
         },
     )
     def post(self, request):
         serializer = UserRegisterSerializer(data=request.data)
-        if serializer.is_valid(): # 유효성 검사
+        if serializer.is_valid():  # 유효성 검사
             serializer.save()
             return Response(
                 {"message": "회원가입이 성공적으로 완료되었습니다"},
-                status=status.HTTP_201_CREATED
+                status=status.HTTP_201_CREATED,
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 # 로그인 API
 class JWTLoginView(APIView):
     authentication_classes = ()
     permission_classes = (AllowAny,)
+
     @extend_schema(
         request=LoginSerializer,
         responses={
@@ -66,7 +67,9 @@ class JWTLoginView(APIView):
     )
     def post(self, request):
         serializer = LoginSerializer(data=request.data, context={"request": request})
-        serializer.is_valid(raise_exception=True)  # 유효성 검사 실패 시 자동으로 400 응답
+        serializer.is_valid(
+            raise_exception=True
+        )  # 유효성 검사 실패 시 자동으로 400 응답
 
         # validate 메서드에서 설정한 user 가져오기
         user = serializer.validated_data["user"]
@@ -89,6 +92,7 @@ class JWTLoginView(APIView):
             max_age=5 * 60 * 60,
         )
         return response
+
 
 # 로그아웃 API
 class JWTLogoutView(APIView):
@@ -141,8 +145,10 @@ class JWTLogoutView(APIView):
             )
 
     # 유저 프로필 조회, 수정, 삭제 API
+
+
 class UserProfileAPIView(APIView):
-        # View 권한 검사
+    # View 권한 검사
     permission_classes = (IsOwner,)
 
     @extend_schema(
