@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from .models import Account
 from .serializers import AccountSerializer
 
+
 class AccountListCreateView(APIView):
     """
     계좌 목록 조회 및 신규 계좌 생성
