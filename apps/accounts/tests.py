@@ -1,8 +1,10 @@
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.urls import reverse
-from apps.users.models import User
+
 from apps.accounts.models import Account
+from apps.users.models import User
+
 
 class AccountAPITestCase(APITestCase):
     def setUp(self):
