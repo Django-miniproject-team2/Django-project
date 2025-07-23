@@ -40,9 +40,9 @@ CUSTOM_USER_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
-    "app.users.apps.UsersConfig",
-    "app.transactions.apps.TransactionsConfig",
-    "app.accounts.apps.AccountsConfig",
+    "users.apps.UsersConfig",
+    "transactions.apps.TransactionsConfig",
+    "accounts.apps.AccountsConfig",
 ]
 
 
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "app.config.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {

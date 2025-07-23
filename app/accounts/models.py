@@ -1,7 +1,7 @@
 from django.db import models
 
-from app.common.models import BaseModel
-from app.users.models import User
+from common.models import BaseModel
+from users.models import User
 
 BANK_CODES = [
     ("000", "알수없음"),
