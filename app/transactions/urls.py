@@ -12,5 +12,5 @@ urlpatterns = [
     path("create/", TransactionCreateView.as_view(), name="transaction-create"),
     path(
         "<int:pk>/", TransactionHistoryDetailView.as_view(), name="transaction-detail"
-    ),
+),
 ]

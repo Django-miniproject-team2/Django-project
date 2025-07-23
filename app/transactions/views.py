@@ -7,9 +7,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.accounts.models import Account
-from apps.transactions.models import Transaction
-from apps.transactions.serializers import (
+from app.accounts.models import Account
+from app.transactions.models import Transaction
+from app.transactions.serializers import (
     TransactionHistorySerializer,
     TransactionsCreateSerializer,
     TransactionsUpdateSerializer,

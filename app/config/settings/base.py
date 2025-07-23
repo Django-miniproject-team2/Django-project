@@ -16,7 +16,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -40,9 +40,9 @@ CUSTOM_USER_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
-    "apps.users.apps.UsersConfig",
-    "apps.transactions.apps.TransactionsConfig",
-    "apps.accounts.apps.AccountsConfig",
+    "app.users.apps.UsersConfig",
+    "app.transactions.apps.TransactionsConfig",
+    "app.accounts.apps.AccountsConfig",
 ]
 
 
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "app.config.urls"
 
 TEMPLATES = [
     {

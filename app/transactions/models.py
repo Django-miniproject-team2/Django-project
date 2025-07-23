@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.accounts.models import Account
+from app.accounts.models import Account
 
 # 거래 종류
 TRANSACTION_TYPE_CHOICES = [

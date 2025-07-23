@@ -6,8 +6,8 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from apps.accounts.models import Account
-from apps.transactions.models import Transaction
+from app.accounts.models import Account
+from app.transactions.models import Transaction
 
 User = get_user_model()
 
