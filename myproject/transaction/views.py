@@ -16,8 +16,8 @@ class TransactionViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['transaction_type', 'deposit_withdrawal_type']
-    ordering_fields = ['transaction_date', 'amount']
+    filterset_fields = ["transaction_type", "deposit_withdrawal_type"]
+    ordering_fields = ["transaction_date", "amount"]
 
     def get_queryset(self):
         return Transaction.objects.filter(account=self.request.user)

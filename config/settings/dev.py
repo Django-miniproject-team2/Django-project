@@ -20,7 +20,7 @@ DATABASES = {
 }
 
 INSTALLED_APPS += [
-    'rest_framework',
-    'django_filters',
-    'myproject.transaction',
+    "rest_framework",
+    "django_filters",
+    "myproject.transaction",
 ]

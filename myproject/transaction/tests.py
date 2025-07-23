@@ -10,10 +10,13 @@ from .models import Transaction
 
 User = get_user_model()
 
+
 class TransactionAPITestCase(APITestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser",email="test@example.com", password="testpass123")
+        self.user = User.objects.create_user(
+            username="testuser", email="test@example.com", password="testpass123"
+        )
         success = self.client.login(username="testuser", password="testpass123")
         print("Login success?", success)
 
@@ -25,11 +28,11 @@ class TransactionAPITestCase(APITestCase):
             after=90000,
             account_details="ATM 입금",
             transaction_type="cash",
-            deposit_withdrawal_type="deposit"
+            deposit_withdrawal_type="deposit",
         )
 
-        self.transaction_url = reverse('transaction-detail', args=[self.transaction.id])
-        self.list_url = reverse('transaction-list')
+        self.transaction_url = reverse("transaction-detail", args=[self.transaction.id])
+        self.list_url = reverse("transaction-list")
 
     def test_transaction_create(self):
         data = {
@@ -37,7 +40,7 @@ class TransactionAPITestCase(APITestCase):
             "after": 95000,
             "account_details": "올리브영",
             "transaction_type": "card_payment",
-            "deposit_withdrawal_type": "withdrawal"
+            "deposit_withdrawal_type": "withdrawal",
         }
         response = self.client.post(self.list_url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -49,7 +52,7 @@ class TransactionAPITestCase(APITestCase):
         self.assertEqual(len(response.data), 1)
 
     def test_transaction_filter(self):
-        response = self.client.get(self.list_url + '?transaction_type=cash')
+        response = self.client.get(self.list_url + "?transaction_type=cash")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
 
@@ -59,7 +62,7 @@ class TransactionAPITestCase(APITestCase):
             "after": 88000,
             "account_details": "올리브영",
             "transaction_type": "card_payment",
-            "deposit_withdrawal_type": "withdrawal"
+            "deposit_withdrawal_type": "withdrawal",
         }
         response = self.client.put(self.transaction_url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)

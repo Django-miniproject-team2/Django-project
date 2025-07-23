@@ -7,21 +7,53 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Transaction',
+            name="Transaction",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('account_id', models.IntegerField()),
-                ('amount', models.DecimalField(decimal_places=2, help_text='거래금액', max_digits=15)),
-                ('after', models.DecimalField(decimal_places=2, help_text='거래 후 잔액', max_digits=15)),
-                ('account_details', models.CharField(help_text='오픈뱅킹 출금, ATM 현금 입금, 올리브영 등', max_length=255)),
-                ('transaction_type', models.CharField(help_text='현금, 계좌 이체, 자동 이체, 카드 결제 등', max_length=100)),
-                ('deposit_withdrawal_type', models.CharField(help_text='입금, 출금', max_length=50)),
-                ('transaction_date', models.DateTimeField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("account_id", models.IntegerField()),
+                (
+                    "amount",
+                    models.DecimalField(
+                        decimal_places=2, help_text="거래금액", max_digits=15
+                    ),
+                ),
+                (
+                    "after",
+                    models.DecimalField(
+                        decimal_places=2, help_text="거래 후 잔액", max_digits=15
+                    ),
+                ),
+                (
+                    "account_details",
+                    models.CharField(
+                        help_text="오픈뱅킹 출금, ATM 현금 입금, 올리브영 등",
+                        max_length=255,
+                    ),
+                ),
+                (
+                    "transaction_type",
+                    models.CharField(
+                        help_text="현금, 계좌 이체, 자동 이체, 카드 결제 등",
+                        max_length=100,
+                    ),
+                ),
+                (
+                    "deposit_withdrawal_type",
+                    models.CharField(help_text="입금, 출금", max_length=50),
+                ),
+                ("transaction_date", models.DateTimeField()),
             ],
         ),
     ]
