@@ -3,7 +3,7 @@ name: Checks
 on:
   push:
     branches:
-      - '**'  # 모든 브랜치
+      - '**'
   pull_request:
     branches:
       - '**'
@@ -36,6 +36,12 @@ jobs:
       with:
         python-version: '3.12'
 
+    - name: Install pip packages first
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      shell: bash
+
     - name: Install uv
       run: curl -LsSf https://astral.sh/uv/install.sh | sh
       shell: bash
@@ -46,7 +52,7 @@ jobs:
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
       shell: bash
 
-    - name: Install Packages & Libraries with uv sync
+    - name: Sync uv packages
       run: uv sync --dev
       shell: bash
 
@@ -65,8 +71,10 @@ jobs:
         done
       shell: bash
 
-    - name: Run Django Migration
-      run: |
-        uv run python manage.py makemigrations
-        uv run python manage.py migrate
+    - name: Run Django makemigrations
+      run: python manage.py makemigrations
+      shell: bash
+
+    - name: Run Django migrate
+      run: python manage.py migrate
       shell: bash
