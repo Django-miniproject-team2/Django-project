@@ -143,6 +143,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
