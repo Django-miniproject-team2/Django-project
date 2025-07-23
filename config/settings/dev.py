@@ -18,3 +18,9 @@ DATABASES = {
         "PORT": "5432",
     }
 }
+
+INSTALLED_APPS += [
+    'rest_framework',
+    'django_filters',
+    'myproject.transaction',
+]
