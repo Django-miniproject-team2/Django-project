@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "myproject.transaction",
-    "django_filter",
+    "django_filters",
 ]
 
 REST_FRAMEWORK = {
