@@ -1263,3 +1263,7 @@ class TransactionHistoryAPITestCase(APITestCase):
  -- AWS EC2를 활용한 배포 --
 
 ---
+> http://3.39.239.162:8000/ 
+
+
+![Swagger.png](docs/Swagger.png)
