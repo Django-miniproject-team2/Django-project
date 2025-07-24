@@ -10,15 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-o6)#3y40rx_9yh(l@rt&%4260!gh))80oft6^@7-3o#prh6-v0"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
+if SECRET_KEY is None:
+    raise ValueError("DJANGO_SECRET_KEY environment variable is not set.")
 
 # Application definition
 DJANGO_SYSTEM_APPS = [
@@ -31,6 +36,10 @@ DJANGO_SYSTEM_APPS = [
 ]
 
 CUSTOM_USER_APPS = [
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
+    "drf_spectacular",
     "apps.users.apps.UsersConfig",
     "apps.transactions.apps.TransactionsConfig",
     "apps.accounts.apps.AccountsConfig",
@@ -93,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Seoul"
 
 USE_I18N = True
 
@@ -111,3 +120,13 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",  # 인증된 사용자만 접근 허용
+    ),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",  # JWT Token이 있는지 검증
+    ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}

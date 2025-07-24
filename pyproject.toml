@@ -8,9 +8,13 @@ dependencies = [
     "black>=25.1.0",
     "django>=5.2.4",
     "django-restframework>=0.0.1",
+    "djangorestframework-simplejwt>=5.4.0",
+    "dotenv>=0.9.9",
+    "drf-spectacular>=0.28.0",
     "drf-yasg>=1.21.10",
     "isort>=6.0.1",
     "postgres>=4.0",
+    "pyjwt>=2.10.1",
 ]
 
 [dependency-groups]

@@ -11,7 +11,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      DJANGO_SECRET_KEY: super-secret-key-for-ci
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: ${{  secrets.DB_NAME  }}
     services:
       db:
         image: postgres:14
